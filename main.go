@@ -1,3 +1,4 @@
+// FasterEdge 开源项目 · https://github.com/FasterEdge · https://gitee.com/FasterEdge
 // SimpleWebShell-RemoteUpdate performs non-invasive remote release workflows through an existing SimpleWebShell.
 package main
 
