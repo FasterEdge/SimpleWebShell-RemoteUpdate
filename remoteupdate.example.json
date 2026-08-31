@@ -1,0 +1,23 @@
+{
+  "remote": {
+    "url": "http://127.0.0.1:8878",
+    "timeout": "10m",
+    "session_enabled": true,
+    "insecure_tls": false
+  },
+  "app": {
+    "name": "my-service",
+    "root": "/opt/my-service",
+    "artifact_type": "tar.gz",
+    "install_subdir": "",
+    "pre_switch": "",
+    "post_switch": "",
+    "health_check": "",
+    "rollback": ""
+  },
+  "policy": {
+    "keep_releases": 5,
+    "require_health_check": false,
+    "disable_auto_rollback": false
+  }
+}

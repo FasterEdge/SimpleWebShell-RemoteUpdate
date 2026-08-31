@@ -1,0 +1,7 @@
+simplewebshell-remoteupdate
+dist/
+remoteupdate.json
+*.log
+.DS_Store
+.idea/
+.vscode/
