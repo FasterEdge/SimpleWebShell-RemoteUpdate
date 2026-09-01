@@ -16,7 +16,7 @@ import (
 	"simplewebshell-remoteupdate/internal/workflow"
 )
 
-var version = "1.0.20260901"
+var version = "1.0.20260902"
 
 func main() {
 	os.Exit(run(os.Args[1:]))
