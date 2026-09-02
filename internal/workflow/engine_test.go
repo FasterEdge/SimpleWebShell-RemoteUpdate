@@ -123,6 +123,41 @@ func TestArtifactRejectsTraversal(t *testing.T) {
 	}
 }
 
+// TestArtifactAcceptsDotRootEntries 模拟 `tar -czf pkg.tar.gz .` 的产物:
+// 包内含 "./" 根目录条目与 "./bin/app" 前缀条目, 均落在目标目录内,
+// 不应被误判为路径穿越。
+func TestArtifactAcceptsDotRootEntries(t *testing.T) {
+	f, err := os.CreateTemp(t.TempDir(), "dotroot-*.tar.gz")
+	if err != nil {
+		t.Fatal(err)
+	}
+	gz := gzip.NewWriter(f)
+	tw := tar.NewWriter(gz)
+	dirHeader := &tar.Header{Name: "./", Mode: 0755, Typeflag: tar.TypeDir}
+	if err := tw.WriteHeader(dirHeader); err != nil {
+		t.Fatal(err)
+	}
+	data := []byte("artifact")
+	if err := tw.WriteHeader(&tar.Header{Name: "./bin/app", Mode: 0755, Size: int64(len(data)), Typeflag: tar.TypeReg}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := tw.Write(data); err != nil {
+		t.Fatal(err)
+	}
+	if err := tw.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if err := gz.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if err := f.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if err := validateArtifact(f.Name(), "tar.gz"); err != nil {
+		t.Fatalf("dot-root tar should be accepted, got err=%v", err)
+	}
+}
+
 func createArtifact(t *testing.T) string {
 	t.Helper()
 	return createTarArtifact(t, "bin/app")

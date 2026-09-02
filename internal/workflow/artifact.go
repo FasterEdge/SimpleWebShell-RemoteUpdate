@@ -80,7 +80,10 @@ func validateArchivePath(name string) error {
 		return fmt.Errorf("发布包包含不安全路径: %q", name)
 	}
 	clean := path.Clean(name)
-	if clean == "." || clean == ".." || strings.HasPrefix(clean, "../") {
+	// 允许 clean == "." (即 "." 或 "./") : 这是 `tar -czf pkg.tar.gz .` 这类
+	// CI 常见打包方式生成的根目录条目, 解包时落在目标目录内, 不构成穿越。
+	// 只拒绝真正向上逃逸的 ".." / "../xxx"。
+	if clean == ".." || strings.HasPrefix(clean, "../") {
 		return fmt.Errorf("发布包包含路径穿越: %q", name)
 	}
 	return nil
