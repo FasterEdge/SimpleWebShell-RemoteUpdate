@@ -11,9 +11,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"simplewebshell-remoteupdate/internal/config"
-	"simplewebshell-remoteupdate/internal/webshell"
-	"simplewebshell-remoteupdate/internal/workflow"
+	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/config"
+	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/webshell"
+	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/workflow"
 )
 
 var version = "1.0.20260902"

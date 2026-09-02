@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	"simplewebshell-remoteupdate/internal/config"
+	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/config"
 )
 
 // Remote is the minimal SimpleWebShell API used by the workflow.

@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"simplewebshell-remoteupdate/internal/config"
+	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/config"
 )
 
 type fakeRemote struct {
