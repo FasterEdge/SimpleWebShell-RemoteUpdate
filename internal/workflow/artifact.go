@@ -68,7 +68,7 @@ func validateTar(tr *tar.Reader) error {
 			return err
 		}
 		switch h.Typeflag {
-		case tar.TypeReg, tar.TypeRegA, tar.TypeDir:
+		case tar.TypeReg, tar.TypeDir: // TypeReg 已覆盖旧式 TypeRegA
 		default:
 			return fmt.Errorf("tar 包含不允许的链接或特殊文件: %q", h.Name)
 		}
