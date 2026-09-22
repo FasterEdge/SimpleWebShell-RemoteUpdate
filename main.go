@@ -16,7 +16,7 @@ import (
 	"github.com/FasterEdge/SimpleWebShell-RemoteUpdate/internal/workflow"
 )
 
-var version = "1.0.20260902"
+var version = "1.0.20260922"
 
 func main() {
 	os.Exit(run(os.Args[1:]))
